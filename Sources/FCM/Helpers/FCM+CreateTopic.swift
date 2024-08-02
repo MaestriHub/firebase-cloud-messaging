@@ -14,6 +14,9 @@ extension FCM {
          guard let configuration = self.configuration else {
              fatalError("FCM not configured. Use app.fcm.configuration = ...")
          }
+         guard let serverKey = configuration.serverKey else {
+             fatalError("FCM: CreateTopics: Server Key is missing.")
+         }
          let url = self.iidURL + "batchAdd"
          let name = name ?? UUID().uuidString
          var headers = HTTPHeaders()

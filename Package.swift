@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "FCM",
+    name: "firebase-cloud-messaging",
     platforms: [
        .macOS(.v10_15)
     ],
