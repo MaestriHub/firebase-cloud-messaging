@@ -7,10 +7,6 @@ extension FCM {
      }
 
      public func deleteTopic(_ name: String, tokens: [String]) async throws {
-         try await _deleteTopic(name, tokens: tokens)
-     }
-
-     private func _deleteTopic(_ name: String, tokens: [String]) async throws {
          guard let configuration = self.configuration else {
              fatalError("FCM not configured. Use app.fcm.configuration = ...")
          }

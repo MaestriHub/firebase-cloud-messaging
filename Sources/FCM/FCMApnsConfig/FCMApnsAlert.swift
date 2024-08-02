@@ -33,7 +33,7 @@ public struct FCMApnsAlert: Codable, Equatable {
     public var locKey: String?
     ///Variable string values to appear in place of the format specifiers in loc-key. See Localizing the Content of Your Remote Notifications for more information.
     public var locArgs: [String]?
-
+    
     enum CodingKeys: String, CodingKey {
         case title
         case subtitle
@@ -46,17 +46,19 @@ public struct FCMApnsAlert: Codable, Equatable {
         case subtitleLocKey = "subtitle-loc-key"
         case subtitleLocArgs = "subtitle-loc-args"
     }
-
-    public init(title: String? = nil,
-                subtitle: String? = nil,
-                body: String? = nil,
-                titleLocKey: String? = nil,
-                titleLocArgs: [String]? = nil,
-                subtitleLocKey: String? = nil,
-                subtitleLocArgs: [String]? = nil,
-                locKey: String? = nil,
-                locArgs: [String]? = nil,
-                launchImage: String? = nil) {
+    
+    public init(
+        title: String? = nil,
+        subtitle: String? = nil,
+        body: String? = nil,
+        titleLocKey: String? = nil,
+        titleLocArgs: [String]? = nil,
+        subtitleLocKey: String? = nil,
+        subtitleLocArgs: [String]? = nil,
+        locKey: String? = nil,
+        locArgs: [String]? = nil,
+        launchImage: String? = nil
+    ) {
         self.title = title
         self.subtitle = subtitle
         self.body = body

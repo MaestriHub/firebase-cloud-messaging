@@ -3,10 +3,6 @@ import Vapor
 
 extension FCM {
      public func send(_ message: FCMMessageDefault) async throws -> String {
-         try await _send(message)
-     }
-
-     private func _send(_ message: FCMMessageDefault) async throws -> String {
          guard let configuration = self.configuration else {
              fatalError("FCM not configured. Use app.fcm.configuration = ...")
          }

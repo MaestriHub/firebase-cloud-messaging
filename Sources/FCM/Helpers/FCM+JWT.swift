@@ -2,6 +2,7 @@ import Foundation
 import JWT
 
 extension FCM {
+    
     func generateJWT() throws -> String {
         guard let configuration = self.configuration else {
             fatalError("FCM not configured. Use app.fcm.configuration = ...")

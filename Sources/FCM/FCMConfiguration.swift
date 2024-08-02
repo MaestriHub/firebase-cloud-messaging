@@ -13,7 +13,7 @@ public struct FCMConfiguration {
     
     // MARK: Initializers
     
-    public init (email: String, projectId: String, key: String, serverKey: String? = nil, senderId: String? = nil) {
+    public init(email: String, projectId: String, key: String, serverKey: String? = nil, senderId: String? = nil) {
         self.email = email
         self.projectId = projectId
         self.key = key
@@ -21,7 +21,7 @@ public struct FCMConfiguration {
         self.senderId = senderId ?? Environment.get("FCM_SENDER_ID")
     }
     
-    public init (email: String, projectId: String, keyPath: String, serverKey: String? = nil, senderId: String? = nil) {
+    public init(email: String, projectId: String, keyPath: String, serverKey: String? = nil, senderId: String? = nil) {
         self.email = email
         self.projectId = projectId
         self.key = Self.readKey(from: keyPath)
@@ -29,7 +29,7 @@ public struct FCMConfiguration {
         self.senderId = senderId ?? Environment.get("FCM_SENDER_ID")
     }
     
-    public init (pathToServiceAccountKey path: String) {
+    public init(pathToServiceAccountKey path: String) {
         let s = Self.readServiceAccount(at: path)
         self.email = s.client_email
         self.projectId = s.project_id
@@ -38,7 +38,7 @@ public struct FCMConfiguration {
         self.senderId = s.sender_id ?? Environment.get("FCM_SENDER_ID")
     }
     
-    public init (fromJSON json: String) {
+    public init(fromJSON json: String) {
         let s = Self.parseServiceAccount(from: json)
         self.email = s.client_email
         self.projectId = s.project_id

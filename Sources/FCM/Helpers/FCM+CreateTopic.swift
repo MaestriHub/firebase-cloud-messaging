@@ -7,10 +7,6 @@ extension FCM {
      }
 
      public func createTopic(_ name: String? = nil, tokens: [String]) async throws -> String {
-         try await _createTopic(name, tokens: tokens)
-     }
-
-     private func _createTopic(_ name: String? = nil, tokens: [String]) async throws -> String {
          guard let configuration = self.configuration else {
              fatalError("FCM not configured. Use app.fcm.configuration = ...")
          }

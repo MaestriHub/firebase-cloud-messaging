@@ -39,13 +39,15 @@ public class FCMMessage<APNSPayload>: Codable where APNSPayload: FCMApnsPayloadP
     public var condition: String?
     
     /// Initialization with device token
-    public init(token: String? = nil,
-                notification: FCMNotification?,
-                data: [String: String]? = nil,
-                name: String? = nil,
-                android: FCMAndroidConfig? = nil,
-                webpush: FCMWebpushConfig? = nil,
-                apns: FCMApnsConfig<APNSPayload>? = nil) {
+    public init(
+        token: String? = nil,
+        notification: FCMNotification?,
+        data: [String: String]? = nil,
+        name: String? = nil,
+        android: FCMAndroidConfig? = nil,
+        webpush: FCMWebpushConfig? = nil,
+        apns: FCMApnsConfig<APNSPayload>? = nil
+    ) {
         self.token = token
         self.notification = notification
         if let data = data {
@@ -58,13 +60,15 @@ public class FCMMessage<APNSPayload>: Codable where APNSPayload: FCMApnsPayloadP
     }
     
     /// Initialization with topic
-    public init(topic: String,
-                notification: FCMNotification?,
-                data: [String: String]? = nil,
-                name: String? = nil,
-                android: FCMAndroidConfig? = nil,
-                webpush: FCMWebpushConfig? = nil,
-                apns: FCMApnsConfig<APNSPayload>? = nil) {
+    public init(
+        topic: String,
+        notification: FCMNotification?,
+        data: [String: String]? = nil,
+        name: String? = nil,
+        android: FCMAndroidConfig? = nil,
+        webpush: FCMWebpushConfig? = nil,
+        apns: FCMApnsConfig<APNSPayload>? = nil
+    ) {
         self.topic = topic
         self.notification = notification
         if let data = data {
@@ -77,14 +81,15 @@ public class FCMMessage<APNSPayload>: Codable where APNSPayload: FCMApnsPayloadP
     }
     
     /// Initialization with condition
-    public init(condition: String,
-                notification: FCMNotification?,
-                data: [String: String]? = nil,
-                name: String? = nil,
-                android: FCMAndroidConfig? = nil,
-                webpush: FCMWebpushConfig? = nil,
-                apns: FCMApnsConfig<APNSPayload>? = nil)
-    {
+    public init(
+        condition: String,
+        notification: FCMNotification?,
+        data: [String: String]? = nil,
+        name: String? = nil,
+        android: FCMAndroidConfig? = nil,
+        webpush: FCMWebpushConfig? = nil,
+        apns: FCMApnsConfig<APNSPayload>? = nil
+    ) {
         self.condition = condition
         self.notification = notification
         if let data = data {
@@ -99,50 +104,62 @@ public class FCMMessage<APNSPayload>: Codable where APNSPayload: FCMApnsPayloadP
 
 extension FCMMessage where APNSPayload == FCMApnsPayload {
     /// Initialization with device token
-    public convenience init(token: String,
-                notification: FCMNotification?,
-                data: [String: String]? = nil,
-                name: String? = nil,
-                android: FCMAndroidConfig? = nil,
-                webpush: FCMWebpushConfig? = nil) {
-        self.init(token: token,
-                  notification: notification,
-                  data: data,
-                  name: name,
-                  android: android,
-                  webpush: webpush,
-                  apns: FCMApnsConfig.default)
+    public convenience init(
+        token: String,
+        notification: FCMNotification?,
+        data: [String: String]? = nil,
+        name: String? = nil,
+        android: FCMAndroidConfig? = nil,
+        webpush: FCMWebpushConfig? = nil
+    ) {
+        self.init(
+            token: token,
+            notification: notification,
+            data: data,
+            name: name,
+            android: android,
+            webpush: webpush,
+            apns: FCMApnsConfig.default
+        )
     }
     
     /// Initialization with topic
-    public convenience init(topic: String,
-                notification: FCMNotification?,
-                data: [String: String]? = nil,
-                name: String? = nil,
-                android: FCMAndroidConfig? = nil,
-                webpush: FCMWebpushConfig? = nil) {
-        self.init(topic: topic,
-                  notification: notification,
-                  data: data,
-                  name: name,
-                  android: android,
-                  webpush: webpush,
-                  apns: FCMApnsConfig.default)
+    public convenience init(
+        topic: String,
+        notification: FCMNotification?,
+        data: [String: String]? = nil,
+        name: String? = nil,
+        android: FCMAndroidConfig? = nil,
+        webpush: FCMWebpushConfig? = nil
+    ) {
+        self.init(
+            topic: topic,
+            notification: notification,
+            data: data,
+            name: name,
+            android: android,
+            webpush: webpush,
+            apns: FCMApnsConfig.default
+        )
     }
     
     /// Initialization with condition
-    public convenience init(condition: String,
-                notification: FCMNotification?,
-                data: [String: String]? = nil,
-                name: String? = nil,
-                android: FCMAndroidConfig? = nil,
-                webpush: FCMWebpushConfig? = nil) {
-        self.init(condition: condition,
-                  notification: notification,
-                  data: data,
-                  name: name,
-                  android: android,
-                  webpush: webpush,
-                  apns: FCMApnsConfig.default)
+    public convenience init(
+        condition: String,
+        notification: FCMNotification?,
+        data: [String: String]? = nil,
+        name: String? = nil,
+        android: FCMAndroidConfig? = nil,
+        webpush: FCMWebpushConfig? = nil
+    ) {
+        self.init(
+            condition: condition,
+            notification: notification,
+            data: data,
+            name: name,
+            android: android,
+            webpush: webpush,
+            apns: FCMApnsConfig.default
+        )
     }
 }

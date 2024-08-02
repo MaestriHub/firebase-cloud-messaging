@@ -28,14 +28,16 @@ public struct FCMAndroidConfig: Codable, Equatable {
     
     /// Notification to send to android devices.
     public var notification: FCMAndroidNotification?
-
+    
     /// Public Initializer
-    public init(collapse_key: String? = nil,
-                priority: FCMAndroidMessagePriority = .normal,
-                ttl: String? = nil,
-                restricted_package_name: String? = nil,
-                data: [String: String]? = nil,
-                notification: FCMAndroidNotification? = nil) {
+    public init(
+        collapse_key: String? = nil,
+        priority: FCMAndroidMessagePriority = .normal,
+        ttl: String? = nil,
+        restricted_package_name: String? = nil,
+        data: [String: String]? = nil,
+        notification: FCMAndroidNotification? = nil
+    ) {
         self.collapse_key = collapse_key
         self.priority = priority
         self.ttl = ttl

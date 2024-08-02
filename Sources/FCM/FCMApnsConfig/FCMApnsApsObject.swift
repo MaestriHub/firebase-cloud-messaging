@@ -26,7 +26,7 @@ public struct FCMApnsApsObject: Codable, Equatable {
     /// This string must correspond to the identifier
     /// of one of the UNNotificationCategory objects you register at launch time.
     public var category: String?
-
+    
     /// Sets the priority of the message
     /// Valid values are "normal" and "high." On iOS, these correspond to APNs priorities 5 and 10.
     /// For information about how to prepare sounds, see priority.
@@ -43,12 +43,12 @@ public struct FCMApnsApsObject: Codable, Equatable {
     /// If the value is 1, the system passes the notification to your notification service app extension before delivery.
     /// Use your extension to modify the notification’s content.
     public var mutableContent: Int?
-
+    
     public enum Priority: String {
         case normal
         case high
     }
-
+    
     enum CodingKeys: String, CodingKey {
         case alert
         case badge
@@ -59,7 +59,7 @@ public struct FCMApnsApsObject: Codable, Equatable {
         case threadId="thread-id"
         case mutableContent="mutable-content"
     }
-
+    
     struct Config {
         var alert: FCMApnsAlertOrString?
         var badge: Int?
@@ -70,7 +70,7 @@ public struct FCMApnsApsObject: Codable, Equatable {
         var threadId: String?
         var mutableContent: Bool?
     }
-
+    
     init(config: Config?) {
         let contentAvailable = config?.contentAvailable ?? false
         if !contentAvailable {
@@ -95,40 +95,52 @@ public struct FCMApnsApsObject: Codable, Equatable {
         return FCMApnsApsObject(alertString: nil, sound: "default")
     }
     
-    public init(alertString: String?,
-                badge: Int? = nil,
-                sound: String?,
-                priority: String? = nil,
-                contentAvailable: Bool? = nil,
-                category: String? = nil,
-                threadId: String? = nil,
-                mutableContent: Bool? = nil) {
-        self.init(config: Config(alert: FCMApnsAlertOrString.fromRaw(alertString),
-                                 badge: badge,
-                                 sound: sound,
-                                 priority: priority,
-                                 contentAvailable: contentAvailable,
-                                 category: category,
-                                 threadId: threadId,
-                                 mutableContent: mutableContent))
+    public init(
+        alertString: String?,
+        badge: Int? = nil,
+        sound: String?,
+        priority: String? = nil,
+        contentAvailable: Bool? = nil,
+        category: String? = nil,
+        threadId: String? = nil,
+        mutableContent: Bool? = nil
+    ) {
+        self.init(
+            config: Config(
+                alert: FCMApnsAlertOrString.fromRaw(alertString),
+                badge: badge,
+                sound: sound,
+                priority: priority,
+                contentAvailable: contentAvailable,
+                category: category,
+                threadId: threadId,
+                mutableContent: mutableContent
+            )
+        )
     }
     
-    public init(alert: FCMApnsAlert? = nil,
-                badge: Int? = nil,
-                sound: String?,
-                priority: String? = nil,
-                contentAvailable: Bool? = nil,
-                category: String? = nil,
-                threadId: String? = nil,
-                mutableContent: Bool? = nil) {
-        self.init(config: Config(alert: FCMApnsAlertOrString.fromRaw(alert),
-                                 badge: badge,
-                                 sound: sound,
-                                 priority: priority,
-                                 contentAvailable: contentAvailable,
-                                 category: category,
-                                 threadId: threadId,
-                                 mutableContent: mutableContent))
+    public init(
+        alert: FCMApnsAlert? = nil,
+        badge: Int? = nil,
+        sound: String?,
+        priority: String? = nil,
+        contentAvailable: Bool? = nil,
+        category: String? = nil,
+        threadId: String? = nil,
+        mutableContent: Bool? = nil
+    ) {
+        self.init(
+            config: Config(
+                alert: FCMApnsAlertOrString.fromRaw(alert),
+                badge: badge,
+                sound: sound,
+                priority: priority,
+                contentAvailable: contentAvailable,
+                category: category,
+                threadId: threadId,
+                mutableContent: mutableContent
+            )
+        )
     }
 }
 

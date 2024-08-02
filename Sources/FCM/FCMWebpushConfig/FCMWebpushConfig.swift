@@ -12,7 +12,11 @@ public struct FCMWebpushConfig: Codable {
     /// If present, "title" and "body" fields override FCMNotification.title and FCMNotification.body.
     public var notification: [String: String]?
     
-    public init (headers: [String: String]? = nil, data: [String: String]? = nil, notification: [String: String]? = nil) {
+    public init (
+        headers: [String: String]? = nil,
+        data: [String: String]? = nil,
+        notification: [String: String]? = nil
+    ) {
         self.headers = headers
         self.data = data
         self.notification = notification

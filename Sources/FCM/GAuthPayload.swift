@@ -15,7 +15,12 @@ struct GAuthPayload: JWTPayload {
         return ExpirationClaim(value: Date().addingTimeInterval(3600))
     }
 
-    init(iss: String, sub: String, scope: String, aud: String) {
+    init(
+        iss: String,
+        sub: String,
+        scope: String,
+        aud: String
+    ) {
         self.uid = UUID().uuidString
         self.exp = GAuthPayload.expirationClaim
         self.iat = IssuedAtClaim(value: Date())
@@ -25,7 +30,12 @@ struct GAuthPayload: JWTPayload {
         self.aud = AudienceClaim(value: aud)
     }
     
-    private init(iss: IssuerClaim, sub: SubjectClaim, scope: String, aud: AudienceClaim) {
+    private init(
+        iss: IssuerClaim,
+        sub: SubjectClaim,
+        scope: String,
+        aud: AudienceClaim
+    ) {
         self.uid = UUID().uuidString
         self.exp = GAuthPayload.expirationClaim
         self.iat = IssuedAtClaim(value: Date())
