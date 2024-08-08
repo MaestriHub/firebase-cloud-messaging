@@ -47,16 +47,11 @@ import FCM
 
 // Called before your application initializes.
 func configure(_ app: Application) throws {
-    /// case 1
-    /// with service account json file
-    /// put into your environment variables the following key:
-    /// FCM_SERVICE_ACCOUNT_KEY_PATH=path/to/serviceAccountKey.json
-    app.fcm.configuration = .envServiceAccountKey
     
-    /// case 2
+    /// case 1
     /// with service account json string
     /// put into your environment variable the following key:
-    /// FCM_SERVICE_ACCOUNT_KEY="{"prohect_id": "my_project123",...}"
+    /// GOOGLE_APPLICATION_CREDENTIALS="{"prohect_id": "my_project123",...}"
     app.fcm.configuration = .envServiceAccountKey
     
     /// case 3
