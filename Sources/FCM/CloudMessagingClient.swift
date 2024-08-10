@@ -32,7 +32,7 @@ public final class CloudMessagingClient {
         guard let projectId = ProcessInfo.processInfo.environment["PROJECT_ID"] ??
                 (refreshableToken as? OAuthServiceAccount)?.credentials.projectId ??
                 config.project ?? credentials.project else {
-            throw CloudMessagingError.projectIdMissing
+            throw FirebaseCloudMessagingError.projectIdMissing
         }
         
         cloudMessagingRequest = CloudMessagingRequest(

@@ -14,6 +14,16 @@ final public class FCMApnsConfig: Codable {
 
     //MARK: - Public Initializers
     
+    init(
+        headers: [String: String]? = nil,
+        payload: FCMApnsPayload,
+        options: FCMOptions? = nil
+    ) {
+        self.headers = headers ?? [:]
+        self.payload = payload
+        self.options = options
+    }
+    
     /// Use this if you need only aps object
     public convenience init(
         headers: [String: String]? = nil,

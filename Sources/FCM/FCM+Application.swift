@@ -2,7 +2,7 @@ import Vapor
 @_exported import Core
 
 public extension Application {
-    public var firebase: Application.FirebasePlatform {
+    var firebase: Application.FirebasePlatform {
         .init(application: self)
     }
     
@@ -10,7 +10,7 @@ public extension Application {
         typealias Value = GoogleCloudCredentialsConfiguration
     }
     
-    public struct FirebasePlatform {
+    struct FirebasePlatform {
         public let application: Application
         
         /// The configuration for authentincating to GCP APIs via credentials

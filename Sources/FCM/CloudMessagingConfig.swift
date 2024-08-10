@@ -16,14 +16,14 @@ public struct CloudMessagingConfiguration: GoogleCloudAPIConfiguration {
     public let project: String?
     public let subscription: String? = nil
     
-    public init(scope: [GoogleCloudStorageScope], serviceAccount: String, project: String?) {
+    public init(scope: [FirebaseCloudMessagingScope], serviceAccount: String, project: String?) {
         self.scope = scope
         self.serviceAccount = serviceAccount
         self.project = project
     }
     
-    public static func `default`() -> FCMConfiguration {
-        return FCMConfiguration(
+    public static func `default`() -> CloudMessagingConfiguration {
+        return CloudMessagingConfiguration(
             scope: [.cloudPlatform],
             serviceAccount: "default",
             project: nil

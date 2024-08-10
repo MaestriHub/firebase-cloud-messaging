@@ -18,7 +18,7 @@ public struct APNSToFirebaseToken {
 public protocol RegisterAPI {
     
 //    func stop(id: String, resourceId: String, queryParameters: [String: String]?) -> EventLoopFuture<EmptyResponse>
-    public func registerAPNS(
+    func registerAPNS(
         appBundleId: String,
         sandbox: Bool,
         tokens: [String]
@@ -28,6 +28,7 @@ public protocol RegisterAPI {
 public final class FirebaseCloudMessagingRegisterAPI: RegisterAPI {
     
     let request: CloudMessagingRequest
+    let encoder = JSONEncoder()
     
     init(request: CloudMessagingRequest) {
         self.request = request
@@ -45,37 +46,50 @@ public final class FirebaseCloudMessagingRegisterAPI: RegisterAPI {
             return []
         }
         
-        let endpoint = "https://iid.googleapis.com/iid/v1:batchImport"
-        var queryParams = ""
-        if let queryParameters = queryParameters {
-            queryParams = queryParameters.queryParameters
+        struct Payload: Content {
+            let application: String
+            let sandbox: Bool
+            let apns_tokens: [String]
         }
+        struct Result: GoogleCloudModel {
+            struct Result: Codable {
+                let registration_token, apns_token, status: String
+            }
+            let results: [Result]
+        }
+        let endpoint = "https://iid.googleapis.com/iid/v1:batchImport"
         
-        return request.send(method: .POST, path: endpoint, query: queryParams).get()
+        let payload = Payload(application: appBundleId, sandbox: sandbox, apns_tokens: tokens)
         
-//        let url = "https://iid.googleapis.com/iid/v1:batchImport"
-//        var headers = HTTPHeaders()
-//        headers.add(name: .authorization, value: "key=\(serverKey)")
-//        
-//        let clientResponse = try await client.post(URI(string: url), headers: headers) { req in
-//            struct Payload: Content {
-//                let application: String
-//                let sandbox: Bool
-//                let apns_tokens: [String]
-//            }
-//            let payload = Payload(application: appBundleId, sandbox: sandbox, apns_tokens: tokens)
-//            try req.content.encode(payload)
-//        }
-//        try await clientResponse.validate()
-//        struct Result: Codable {
-//            struct Result: Codable {
-//                let registration_token, apns_token, status: String
-//            }
-//            let results: [Result]
-//        }
-//        let result = try clientResponse.content.decode(Result.self)
-//        return result.results.map {
-//            .init(registration_token: $0.registration_token, apns_token: $0.apns_token, isRegistered: $0.status == "OK")
-//        }
+        let body = try HTTPClient.Body.data(encoder.encode(payload))
+        let result: Result = try await request.send(method: .POST, path: endpoint, body: body).get()
+        return result.results.map {
+            .init(registration_token: $0.registration_token, apns_token: $0.apns_token, isRegistered: $0.status == "OK")
+        }
+// OLD VERSION
+//let url = "https://iid.googleapis.com/iid/v1:batchImport"
+//var headers = HTTPHeaders()
+//headers.add(name: .authorization, value: "key=\(serverKey)")
+//
+//let clientResponse = try await client.post(URI(string: url), headers: headers) { req in
+//    struct Payload: Content {
+//        let application: String
+//        let sandbox: Bool
+//        let apns_tokens: [String]
+//    }
+//    let payload = Payload(application: appBundleId, sandbox: sandbox, apns_tokens: tokens)
+//    try req.content.encode(payload)
+//}
+//try await clientResponse.validate()
+//struct Result: Codable {
+//    struct Result: Codable {
+//        let registration_token, apns_token, status: String
+//    }
+//    let results: [Result]
+//}
+//let result = try clientResponse.content.decode(Result.self)
+//return result.results.map {
+//    .init(registration_token: $0.registration_token, apns_token: $0.apns_token, isRegistered: $0.status == "OK")
+//}
     }
 }

@@ -19,7 +19,7 @@ public extension Application.FirebasePlatform {
         typealias Value = HTTPClient
     }
     
-    public var storage: FirebaseCloudMessagingAPI {
+    var storage: FirebaseCloudMessagingAPI {
         get {
             if let existing = self.application.storage[CloudMessagingAPIKey.self] {
                 return existing
@@ -33,7 +33,7 @@ public extension Application.FirebasePlatform {
         }
     }
     
-    public struct FirebaseCloudMessagingAPI {
+    struct FirebaseCloudMessagingAPI {
         public let application: Application
         public let eventLoop: EventLoop
         
@@ -41,8 +41,8 @@ public extension Application.FirebasePlatform {
         public var client: CloudMessagingClient {
             do {
                 let new = try CloudMessagingClient(
-                    credentials: self.application.googleCloud.credentials,
-                    storageConfig: self.configuration,
+                    credentials: self.application.firebase.credentials,
+                    config: self.configuration,
                     httpClient: self.http,
                     eventLoop: self.eventLoop
                 )
