@@ -94,13 +94,13 @@ public extension Application.FirebasePlatform {
     }
 }
 
-extension Request {
+public extension Request {
     private struct FirebaseCloudMessagingKey: StorageKey {
         typealias Value = CloudMessagingClient
     }
     
     /// A client used to interact with the `FirebaseCloudMessaging` API
-    public var fcm: CloudMessagingClient {
+    var fcm: CloudMessagingClient {
         if let existing = application.storage[FirebaseCloudMessagingKey.self] {
             return existing.hopped(to: self.eventLoop)
         } else {
