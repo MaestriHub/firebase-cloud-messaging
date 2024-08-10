@@ -1,10 +1,3 @@
-//
-//  FCMAndroidNotificationVisibility.swift
-//  
-//
-//  Created by Oleh Hudeichuk on 13.12.2019.
-//
-
 public enum FCMAndroidNotificationVisibility: String, Codable, Equatable {
     /// If unspecified, default to Visibility.PRIVATE.
     case unspecified = "VISIBILITY_UNSPECIFIED"

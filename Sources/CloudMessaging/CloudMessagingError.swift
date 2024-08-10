@@ -1,5 +1,19 @@
 import Vapor
 
+public enum CloudMessagingError: GoogleCloudError {
+    case projectIdMissing
+    case unknownError(String)
+    
+    var localizedDescription: String {
+        switch self {
+        case .projectIdMissing:
+            return "Missing project id for FirebaseCloudMessaging API. Did you forget to set your project id?"
+        case .unknownError(let reason):
+            return "An unknown error occured: \(reason)"
+        }
+    }
+}
+
 public struct GoogleError: Error, Decodable {
     public let code: Int
     public let message: String

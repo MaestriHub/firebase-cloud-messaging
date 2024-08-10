@@ -1,10 +1,3 @@
-//
-//  FCMAndroidNotificationLightSettings.swift
-//
-//
-//  Created by Oleh Hudeichuk on 13.12.2019.
-//
-
 public typealias FCMAndroidNotificationLightSettingsColor = FCMAndroidNotificationLightSettings.Color
 
 public struct FCMAndroidNotificationLightSettings: Codable, Equatable {
