@@ -94,6 +94,23 @@ public extension Application.FirebasePlatform {
     }
 }
 
+public extension Application {
+    private struct FirebaseCloudMessagingKey: StorageKey {
+        typealias Value = CloudMessagingClient
+    }
+    
+    /// A client used to interact with the `FirebaseCloudMessaging` API
+    var fcm: CloudMessagingClient {
+        if let existing = storage[FirebaseCloudMessagingKey.self] {
+            return existing.hopped(to: self.eventLoopGroup.next())
+        } else {
+            let new = Application.FirebasePlatform.FirebaseCloudMessagingAPI(application: self, eventLoop: self.eventLoopGroup.next()).client
+            storage[FirebaseCloudMessagingKey.self] = new
+            return new
+        }
+    }
+}
+
 public extension Request {
     private struct FirebaseCloudMessagingKey: StorageKey {
         typealias Value = CloudMessagingClient
