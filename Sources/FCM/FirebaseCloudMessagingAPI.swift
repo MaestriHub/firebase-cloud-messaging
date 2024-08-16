@@ -19,7 +19,7 @@ public extension Application.FirebasePlatform {
         typealias Value = HTTPClient
     }
     
-    var storage: FirebaseCloudMessagingAPI {
+    var messaging: FirebaseCloudMessagingAPI {
         get {
             if let existing = self.application.storage[CloudMessagingAPIKey.self] {
                 return existing
