@@ -4,7 +4,7 @@
 /// it just should conform to FCMApnsPayloadProtocol
 ///
 
-public struct FCMApnsPayload: FCMApnsPayloadProtocol, Equatable {
+public struct FCMApnsPayload: Codable, Equatable {
 
     /// The APS object, primary alert
     public var aps: FCMApnsApsObject

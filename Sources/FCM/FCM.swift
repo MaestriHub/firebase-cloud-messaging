@@ -11,13 +11,10 @@ public struct FCM {
     
     let scope = "https://www.googleapis.com/auth/cloud-platform"
     let audience = "https://www.googleapis.com/oauth2/v4/token"
-    let actionsBaseURL = "https://fcm.googleapis.com/v1/projects/"
-    let iidURL = "https://iid.googleapis.com/iid/v1:"
-    let batchURL = "https://fcm.googleapis.com/batch"
     
     // MARK: Default configurations
     
-    public var apnsDefaultConfig: FCMApnsConfig<FCMApnsPayload>? {
+    public var apnsDefaultConfig: FCMApnsConfig? {
         get { configuration?.apnsDefaultConfig }
         set { configuration?.apnsDefaultConfig = newValue }
     }

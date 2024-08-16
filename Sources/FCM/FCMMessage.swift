@@ -1,8 +1,6 @@
 import Foundation
 
-public typealias FCMMessageDefault = FCMMessage<FCMApnsPayload>
-
-public class FCMMessage<APNSPayload>: Codable where APNSPayload: FCMApnsPayloadProtocol {
+public class FCMMessage: Codable {
     /// Output Only.
     /// The identifier of the message sent,
     /// in the format of projects/*/messages/{message_id}.
@@ -25,7 +23,7 @@ public class FCMMessage<APNSPayload>: Codable where APNSPayload: FCMApnsPayloadP
     
     /// Input only.
     /// Apple Push Notification Service specific options.
-    public var apns: FCMApnsConfig<APNSPayload>?
+    public var apns: FCMApnsConfig?
     
     //MARK: - Union field target. Required. Input only. Target to send a message to. target can be only one of the following:
     
@@ -46,7 +44,7 @@ public class FCMMessage<APNSPayload>: Codable where APNSPayload: FCMApnsPayloadP
         name: String? = nil,
         android: FCMAndroidConfig? = nil,
         webpush: FCMWebpushConfig? = nil,
-        apns: FCMApnsConfig<APNSPayload>? = nil
+        apns: FCMApnsConfig? = nil
     ) {
         self.token = token
         self.notification = notification
@@ -67,7 +65,7 @@ public class FCMMessage<APNSPayload>: Codable where APNSPayload: FCMApnsPayloadP
         name: String? = nil,
         android: FCMAndroidConfig? = nil,
         webpush: FCMWebpushConfig? = nil,
-        apns: FCMApnsConfig<APNSPayload>? = nil
+        apns: FCMApnsConfig? = nil
     ) {
         self.topic = topic
         self.notification = notification
@@ -88,7 +86,7 @@ public class FCMMessage<APNSPayload>: Codable where APNSPayload: FCMApnsPayloadP
         name: String? = nil,
         android: FCMAndroidConfig? = nil,
         webpush: FCMWebpushConfig? = nil,
-        apns: FCMApnsConfig<APNSPayload>? = nil
+        apns: FCMApnsConfig? = nil
     ) {
         self.condition = condition
         self.notification = notification
@@ -99,67 +97,5 @@ public class FCMMessage<APNSPayload>: Codable where APNSPayload: FCMApnsPayloadP
         self.android = android
         self.webpush = webpush
         self.apns = apns
-    }
-}
-
-extension FCMMessage where APNSPayload == FCMApnsPayload {
-    /// Initialization with device token
-    public convenience init(
-        token: String,
-        notification: FCMNotification?,
-        data: [String: String]? = nil,
-        name: String? = nil,
-        android: FCMAndroidConfig? = nil,
-        webpush: FCMWebpushConfig? = nil
-    ) {
-        self.init(
-            token: token,
-            notification: notification,
-            data: data,
-            name: name,
-            android: android,
-            webpush: webpush,
-            apns: FCMApnsConfig.default
-        )
-    }
-    
-    /// Initialization with topic
-    public convenience init(
-        topic: String,
-        notification: FCMNotification?,
-        data: [String: String]? = nil,
-        name: String? = nil,
-        android: FCMAndroidConfig? = nil,
-        webpush: FCMWebpushConfig? = nil
-    ) {
-        self.init(
-            topic: topic,
-            notification: notification,
-            data: data,
-            name: name,
-            android: android,
-            webpush: webpush,
-            apns: FCMApnsConfig.default
-        )
-    }
-    
-    /// Initialization with condition
-    public convenience init(
-        condition: String,
-        notification: FCMNotification?,
-        data: [String: String]? = nil,
-        name: String? = nil,
-        android: FCMAndroidConfig? = nil,
-        webpush: FCMWebpushConfig? = nil
-    ) {
-        self.init(
-            condition: condition,
-            notification: notification,
-            data: data,
-            name: name,
-            android: android,
-            webpush: webpush,
-            apns: FCMApnsConfig.default
-        )
     }
 }
